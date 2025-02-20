@@ -1,3 +1,20 @@
-<h1>Lists here</h1>
+  <div id="banner"
+    class="d-flex align-items-center justify-content-center"
+    style="height: 500px;
+           background: url('<%= asset_path('theatre.jpg') %>') center/cover no-repeat;"
+  >
+    <h1 class="text-white">Movie Collections</h1>
+  </div>
+
+<% @lists.each do |list| %>
+<div class="card" style="width: 18rem;">
+  <img class="card-img-top" src="<%=list.movies.first&.poster_url || asset_path('download.png')%>" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title"><%= list.name %></h5>
+    <p class="card-text"> <%= list.description %> </p>
+    <%= link_to 'See list', list_path(list) %>
+  </div>
+</div>
+<% end %>
 
 <%= link_to 'Create new', new_list_path %>
