@@ -10,7 +10,7 @@ movies = movies_parsed['results']
 
 15.times do
   movies.each do |movie|
-    Movie.create(title: movie['original_title'],
+    Movie.create(title: movie['title'],
                  overview: movie['overview'],
                  rating: movie['vote_average'],
                  poster_url: movie['poster_path'])
