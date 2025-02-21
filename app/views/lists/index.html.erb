@@ -18,7 +18,15 @@
     <% @lists.each do |list| %>
     <div class="col-sm">
     <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="https://image.tmdb.org/t/p/w500<%=list.movies.first&.poster_url%>" alt="Card image cap">
+      <% if list.photo.attached? %>
+        <%= cl_image_tag(list.photo.key, class: "card-img-top crop-fill", alt: "a picture") %>
+        <%= list.photo.attached? %>
+      <% else %>
+        <img
+          class="card-img-top"
+          src="https://image.tmdb.org/t/p/w500<%= list.movies.first&.poster_url %>"
+          alt="<%= list.name %> Photo">
+      <% end %>
       <div class="card-body">
         <h5 class="card-title"><%= list.name %></h5>
         <p class="card-text"> <%= list.description %> </p>
